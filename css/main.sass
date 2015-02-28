@@ -1,0 +1,332 @@
+---
+---
+
+@import "extras"
+@import "colors"
+@import "fonts"
+
+$base: 1.25em
+$baseline: 1rem
+
+$ninesixty_gutter_width: $baseline / 2
+$ninesixty_grid_width: 100%
+$ninesixty_columns: 8
+
+$min_width: $ninesixty_gutter_width * 96
+$free_space: $ninesixty_gutter_width * 4
+
+html
+  :position relative
+  :min-height 100%
+  :min-width $min_width + $free_space
+  :height 100%
+  :background $violet
+  :font
+    :size $base
+    :family "Nautilus", serif
+  :letter-spacing 1px
+  +background-size(cover)
+  
+html, html a
+  :color $black
+
+*
+  +children-list-fix
+
+*, *:before, *:after
+  +box-sizing
+  +transition(opacity .3s ease-in-out)
+  :outline none
+
+body
+  :line-height $baseline
+  :height 100%
+  :min-height 100%
+
+$header: $baseline * 3
+$logo: $ninesixty_gutter_width * 25
+$footer: $baseline * 2
+
+#container
+  :height 100%
+  +grid-container
+  
+  > header
+    :position relative
+    :z-index 1
+    :height $header * 1.5
+    :background $violet
+    :border
+      :bottom 1px solid rgba(51, 0, 102, 0.5)
+    
+    > .wrapper
+      +grid-container($min_width)
+      :height $header * 1.5
+      
+      > h1
+        :height $header
+        :line-height $header
+        :text
+          :align center
+        
+        > a
+          :display block
+          :width 100%
+          :height 100%
+          :font
+            :size $baseline * 1.5
+          +transition-property(opacity, color)
+          
+          &:hover
+            :color $grey
+            +text-shadow(0 0 20px rgba(204, 153, 255, 0.5))
+        
+        & + nav
+          :margin
+            :top -$baseline / 4
+      
+      > nav
+        :height $header / 2
+        :text
+          :align center
+        +children-inline
+        
+        > li
+          :height $header / 2
+          
+          > a
+            :display block
+            :height 100%
+            :padding
+              :top ($header / 2 - $baseline * 1.5) / 2
+              :bottom ($header / 2 - $baseline * 1.5) / 2
+              :left $ninesixty_gutter_width
+              :right $ninesixty_gutter_width
+            :font
+              :size $baseline * 0.9
+            :line-height $baseline * 1.5
+            +transition-property(opacity, color)
+            
+            &:hover
+              :color $grey
+              +text-shadow(0 0 20px rgba(204, 153, 255, 0.5))
+          
+          &.active > a
+            :color $grey
+            :cursor default
+            +text-shadow(0 0 20px rgba(204, 153, 255, 0.5))
+    
+    &:after
+      :content ''
+      +absoluted
+      :background url("{{ "/assets/images/backgrounds/input.jpg" | prepend: site.baseurl }}") center
+      :z-index -1
+      +opacity(0.3)
+    
+    & + *
+      :height 100%
+      :margin
+        :top -$header * 1.5
+      :padding
+        :top $header * 1.5
+      :overflow overlay
+  
+  > #content
+    :padding
+      :bottom $footer
+    :background rgba(227, 217, 226, 0.85)
+    
+    > .wrapper
+      :position relative
+      :padding
+        :top $baseline * 2
+        :bottom $baseline * 2
+      :min-height 100%
+      
+      > *
+        +grid-container($min_width)
+      
+      > .search
+        :display block
+        :height $baseline * 1.5
+        :padding 0 $ninesixty_gutter_width
+        :line-height $baseline * 1.6
+        :font
+          :size $baseline * 0.9
+        :background $white url("{{ "/assets/images/backgrounds/input.jpg" | prepend: site.baseurl }}") center
+        :color $black
+        :border 1px solid $grey
+        +opacity(0.5)
+        
+        &::-webkit-input-placeholder
+          :color $black
+        
+        &::-moz-placeholder
+          :color $black
+        
+        &:-moz-placeholder
+          :color $black
+        
+        &:-ms-input-placeholder
+          :color $black
+        
+        & + *
+          :margin
+            :top $baseline
+      
+      > .image
+        :text
+          :align center
+        
+        > img
+          +inline-block
+          :max-width 100%
+          :border 1px solid $grey
+          :padding calc(#{$ninesixty_gutter_width / 2} - 1px)
+        
+        & + *
+          :margin
+            :top $baseline
+      
+      > h2
+        :font
+          :size $baseline * 1.2
+        :text
+          :align center
+        :line-height $baseline * 2
+        
+        > a
+          +inverse-hover-underline
+        
+        & + *, & + .image + *
+          :margin
+            :top $baseline * 1.5
+      
+      > p
+        :font
+          :size $baseline * 0.9
+        :line-height $baseline * 1.5
+        
+        > a
+          +inverse-hover-underline
+        
+        &.center
+          :text
+            :align center
+        
+        & + p
+          :margin
+            :top $baseline
+        
+        & + *
+          :margin
+            :top $baseline * 2
+        
+        &.last + *
+          :padding
+            :top $baseline
+          :margin
+            :top $baseline
+          :border
+            :top 1px dashed $grey
+      
+      > ul.gallery
+        :height 100%
+        +children-inline
+        
+        > li
+          :position relative
+          :width 100%
+          :height 100%
+          :background no-repeat center
+          +background-size(cover)
+          
+          > a
+            :position absolute
+            :z-index 2
+            :height 100%
+            :width 50%
+            :top 0
+            +hover-opacity
+            
+            &:before
+              :content ''
+              :position absolute
+              :top 50%
+              :margin
+                :top -$baseline * 1.5
+              :background $violet url("{{ "/assets/images/icons/arrow.png" | prepend: site.baseurl }}") no-repeat center
+              +background-size(50%)
+              :height $baseline * 3
+              :width $baseline * 3
+              +border-radius($baseline * 1.5)
+            
+            &.left
+              :left 0
+              
+              &:before
+                :left $ninesixty_gutter_width * 2
+                +rotate(180)
+            
+            &.right
+              :right 0
+              
+              &:before
+                :right $ninesixty_gutter_width * 2
+          
+          &:before
+            :content ''
+            +absoluted
+            :border $ninesixty_gutter_width / 2 solid $violet
+          
+          &:after
+            :content ''
+            +absoluted
+            :z-index 1
+            :border 1px solid $grey
+          
+          & + li
+            :margin
+              :left -100%
+      
+      &.full
+        :height 100%
+      
+      &:before
+        :content ''
+        +absoluted
+        :background url("{{ "/assets/images/backgrounds/flowers.jpg" | prepend: site.baseurl }}") center
+        +opacity(0.1)
+    
+    & + footer
+      :margin
+        :top -$footer
+  
+  > footer
+    :position relative
+    :z-index 10
+    :height $footer
+    :background $violet
+    :border
+      :top 1px solid rgba(51, 0, 102, 0.5)
+    
+    > .wrapper
+      +grid-container($min_width)
+      :height $footer
+      
+      > p
+        :margin
+          :top -1px
+        :height $footer
+        :text
+          :align center
+        :line-height $footer
+        :font
+          :size $baseline * 0.9
+    
+    &:after
+      :content ''
+      +absoluted
+      :background url("{{ "/assets/images/backgrounds/input.jpg" | prepend: site.baseurl }}") center
+      :z-index -1
+      +opacity(0.3)

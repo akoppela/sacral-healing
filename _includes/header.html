@@ -1,0 +1,28 @@
+<header>
+  <div class="wrapper">
+    <h1><a href="{{ "/" | prepend: site.baseurl }}">{{ site.title }}</a></h1>
+    <nav>
+      <li class="{% if page.navigation == 'about' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/about" | prepend: site.baseurl }}">О себе</a>
+      </li>
+      <li class="{% if page.navigation == 'services' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/services" | prepend: site.baseurl }}">О сеансах</a>
+      </li>
+      <li class="{% if page.navigation == 'gallery' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/gallery" | prepend: site.baseurl }}">Фото и Видео</a>
+      </li>
+      <li class="{% if page.navigation == 'questions' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/questions" | prepend: site.baseurl }}">Частые вопросы</a>
+      </li>
+      <li class="{% if page.navigation == 'reviews' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/reviews" | prepend: site.baseurl }}">Отзывы</a>
+      </li>
+      <li class="{% if page.navigation == 'events' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/events" | prepend: site.baseurl }}">События</a>
+      </li>
+      <li class="{% if page.navigation == 'contacts' %}{{ 'active' }}{% endif %}">
+        <a href="{{ "/contacts" | prepend: site.baseurl }}">Контакты</a>
+      </li>
+    </nav>
+  </div>
+</header>
