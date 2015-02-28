@@ -1,7 +1,7 @@
 # Site settings
 title: Сакральное Лечение
 description: сакральное лечение, балийские практики, тайна целительства, массаж, сеансы восполнения жизненной энергии, посвещенная ученица Гуру Идо ашрама Пасупати
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "/sacral-healing/" # the subpath of your site, e.g. /blog/
 url: "http://sacral-healing.com" # the base hostname & protocol for your site
 
 # Build settings
