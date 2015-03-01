@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="SacralHealing">
   {% include head.html %}
   <body>
     <div id="container">
       {% include header.html %}
       <div id="content">
-        <div class="wrapper {% if page.full %}{{ 'full' }}{% endif %}">
+        <div class="wrapper {{page.navigation}} {% if page.navigation == 'gallery' %}{{ 'full' }}{% endif %}">
           {{ content }}
         </div>
       </div>

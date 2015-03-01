@@ -81,6 +81,11 @@ $footer: $baseline * 2
             :color $grey
             +text-shadow(0 0 20px rgba(204, 153, 255, 0.5))
         
+        &.active > a
+          :cursor default
+          :color $grey
+          +text-shadow(0 0 20px rgba(204, 153, 255, 0.5))
+        
         & + nav
           :margin
             :top -$baseline / 4
@@ -115,6 +120,38 @@ $footer: $baseline * 2
             :color $grey
             :cursor default
             +text-shadow(0 0 20px rgba(204, 153, 255, 0.5))
+      
+      > .search
+        :position absolute
+        :top 100%
+        :left 0
+        :margin
+          :top calc(-#{$baseline * 1.5} + 1px)
+        :display block
+        :width 100%
+        :height $baseline * 1.5
+        :padding 0 $ninesixty_gutter_width
+        :line-height $baseline * 1.6
+        :font
+          :size $baseline * 0.9
+        :background $white 
+        :color $black
+        :border 1px solid $grey
+        :text
+          :align center
+        +opacity(0.3)
+        
+        &::-webkit-input-placeholder
+          :color $black
+        
+        &::-moz-placeholder
+          :color $black
+        
+        &:-moz-placeholder
+          :color $black
+        
+        &:-ms-input-placeholder
+          :color $black
     
     &:after
       :content ''
@@ -130,49 +167,65 @@ $footer: $baseline * 2
       :padding
         :top $header * 1.5
       :overflow overlay
+    
+    &.big
+      :height $header * 1.5 + $baseline * 1.5
+      
+      > .wrapper
+        :height $header * 1.5 + $baseline * 1.5
+      
+      & + *
+        :margin
+          :top -($header * 1.5 + $baseline * 1.5)
+        :padding
+          :top $header * 1.5 + $baseline * 1.5
   
   > #content
     :padding
       :bottom $footer
-    :background rgba(227, 217, 226, 0.85)
     
     > .wrapper
+      :overflow hidden
       :position relative
-      :padding
-        :top $baseline * 2
-        :bottom $baseline * 2
       :min-height 100%
+      :background no-repeat center $baseline * 4.5 fixed
+      +background-size(cover)
       
-      > *
-        +grid-container($min_width)
-      
-      > .search
-        :display block
-        :height $baseline * 1.5
-        :padding 0 $ninesixty_gutter_width
-        :line-height $baseline * 1.6
-        :font
-          :size $baseline * 0.9
-        :background $white url("{{ "/assets/images/backgrounds/input.jpg" | prepend: site.baseurl }}") center
-        :color $black
-        :border 1px solid $grey
-        +opacity(0.5)
+      .part
+        :position relative
+        :background rgba(227, 217, 226, 1) url("{{ "/assets/images/backgrounds/flowers.jpg" | prepend: site.baseurl }}") center
+        :padding
+          :top $baseline * 2
+          :bottom $baseline * 2
+        :border
+          :top 1px solid rgba(51, 0, 102, 0.5)
+          :bottom 1px solid rgba(51, 0, 102, 0.5)
         
-        &::-webkit-input-placeholder
-          :color $black
+        > *
+          :position relative
+          +grid-container($min_width)
         
-        &::-moz-placeholder
-          :color $black
+        &:first-child
+          :border
+            :top 0
         
-        &:-moz-placeholder
-          :color $black
+        &:last-child
+          :border
+            :bottom 0
+          
+          &:first-child
+            :border
+              :bottom 1px solid rgba(51, 0, 102, 0.5)
         
-        &:-ms-input-placeholder
-          :color $black
-        
-        & + *
+        &.top
+          :border
+            :top 1px solid rgba(51, 0, 102, 0.5)
           :margin
-            :top $baseline
+            :top $baseline * 16
+        
+        & + .part
+          :margin
+            :top $baseline * 16
       
       > .image
         :text
@@ -188,7 +241,7 @@ $footer: $baseline * 2
           :margin
             :top $baseline
       
-      > h2
+      h2
         :font
           :size $baseline * 1.2
         :text
@@ -202,7 +255,9 @@ $footer: $baseline * 2
           :margin
             :top $baseline * 1.5
       
-      > p
+      p
+        :text
+          :align justify
         :font
           :size $baseline * 0.9
         :line-height $baseline * 1.5
@@ -230,6 +285,16 @@ $footer: $baseline * 2
           :border
             :top 1px dashed $grey
       
+      > ul.list
+        > li
+          :position relative
+          
+          > p
+            :display none
+          
+          &.expanded > p
+            :display block
+      
       > ul.gallery
         :height 100%
         +children-inline
@@ -239,6 +304,9 @@ $footer: $baseline * 2
           :width 100%
           :height 100%
           :background no-repeat center
+          +opacity(0)
+          :visibility hidden
+          +transition-property(opacity, visibility)
           +background-size(cover)
           
           > a
@@ -279,11 +347,9 @@ $footer: $baseline * 2
             +absoluted
             :border $ninesixty_gutter_width / 2 solid $violet
           
-          &:after
-            :content ''
-            +absoluted
-            :z-index 1
-            :border 1px solid $grey
+          &.active
+            +opacity(1)
+            :visibility visible
           
           & + li
             :margin
@@ -291,12 +357,35 @@ $footer: $baseline * 2
       
       &.full
         :height 100%
+        :overflow overlay
       
-      &:before
-        :content ''
-        +absoluted
-        :background url("{{ "/assets/images/backgrounds/flowers.jpg" | prepend: site.baseurl }}") center
-        +opacity(0.1)
+      &.welcome
+        :background
+          :image url("{{ "/assets/images/backgrounds/welcome.jpg" | prepend: site.baseurl }}")
+      
+      &.about
+        :background
+          :image url("{{ "/assets/images/backgrounds/elena.jpg" | prepend: site.baseurl }}")
+      
+      &.services
+        :background
+          :image url("{{ "/assets/images/backgrounds/services.jpg" | prepend: site.baseurl }}")
+      
+      &.questions
+        :background
+          :image url("{{ "/assets/images/backgrounds/questions.jpg" | prepend: site.baseurl }}")
+      
+      &.contacts
+        :background
+          :image url("{{ "/assets/images/backgrounds/contacts.jpg" | prepend: site.baseurl }}")
+      
+      &.reviews
+        :background
+          :image url("{{ "/assets/images/backgrounds/reviews.jpg" | prepend: site.baseurl }}")
+      
+      &.events
+        :background
+          :image url("{{ "/assets/images/backgrounds/events.jpg" | prepend: site.baseurl }}")
     
     & + footer
       :margin
@@ -309,10 +398,14 @@ $footer: $baseline * 2
     :background $violet
     :border
       :top 1px solid rgba(51, 0, 102, 0.5)
+    :overflow hidden
     
     > .wrapper
-      +grid-container($min_width)
+      :width 100%
       :height $footer
+      :white-space nowrap
+      +children-inline
+      :overflow overlay
       
       > p
         :margin
@@ -321,8 +414,15 @@ $footer: $baseline * 2
         :text
           :align center
         :line-height $footer
+        :padding
+          :left $ninesixty_gutter_width * 2
+          :right $ninesixty_gutter_width * 2
         :font
           :size $baseline * 0.9
+        
+        & + p
+          :margin
+            :left 50%
     
     &:after
       :content ''

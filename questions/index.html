@@ -3,6 +3,13 @@ layout: default
 navigation: questions
 ---
 
-<input type="text" class="search" placeholder="Введите поисковый запрос" />
-<h2><a href="#">Как со мной связаться?</a></h2>
-<p>Посмотрите раздел контакты</p>
+<ul class="list" ng-init="questions = {}">
+  {% for question in site.data.questions %}
+    <li class="part" ng-init="questions['{{ forloop.index }}'] = {active: false}" ng-class="{expanded: questions['{{ forloop.index }}'].active}" ng-if="'{{ question.title }}'.toLowerCase().indexOf(search) != -1">
+      <h2><a href="#" ng-click="questions['{{ forloop.index }}'].active = !questions['{{ forloop.index }}'].active">{{ question.title }}</a></h2>
+      {% if question.answer %}
+        <p>{{ question.answer }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

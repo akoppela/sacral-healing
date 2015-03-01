@@ -2,3 +2,12 @@
 layout: default
 navigation: reviews
 ---
+
+<ul class="list">
+  {% for review in site.data.reviews %}
+    <li class="part expanded">
+      <p class="center">{{ review.text | newline_to_br }}</p>
+      <p class="center">От: {{ review.from }}</p>
+    </li>
+  {% endfor %}
+</ul>

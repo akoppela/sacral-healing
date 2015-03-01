@@ -4,9 +4,92 @@ navigation: gallery
 full: true
 ---
 
-<ul class="gallery">
-  <li style="background-image: url({{ "/assets/images/backgrounds/welcome.jpg" | prepend: site.baseurl }});">
-    <a class="left"></a>
-    <a class="right"></a>
-  </li>
+<div class="part">
+  <h2>Общение с целителями</h2>
+</div>
+<ul class="gallery" ng-init="gallery = {active: '{{ site.data.gallery[0] }}'}">
+  {% for image in site.data.gallery %}
+    <li ng-class="{active: gallery.active == '{{ image }}'}" style="background-image: url({{ site.baseurl }}/assets/images/gallery/{{ image }});">
+      {% unless forloop.first %}
+        <a ng-click="gallery.active = '{{ prev }}'" class="left"></a>
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next = site.data.gallery[forloop.index] %}
+        <a ng-click="gallery.active = '{{ next }}'" class="right"></a>
+      {% endunless %}
+    </li>
+    {% assign prev = image %}
+  {% endfor %}
+</ul>
+
+<div class="part">
+  <h2>Ашрам Пасупати</h2>
+</div>
+<ul class="gallery" ng-init="gallery = {active: '{{ site.data.gallery[0] }}'}">
+  {% for image in site.data.gallery %}
+    <li ng-class="{active: gallery.active == '{{ image }}'}" style="background-image: url({{ site.baseurl }}/assets/images/gallery/{{ image }});">
+      {% unless forloop.first %}
+        <a ng-click="gallery.active = '{{ prev }}'" class="left"></a>
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next = site.data.gallery[forloop.index] %}
+        <a ng-click="gallery.active = '{{ next }}'" class="right"></a>
+      {% endunless %}
+    </li>
+    {% assign prev = image %}
+  {% endfor %}
+</ul>
+
+<div class="part">
+  <h2>Фото церемоний и обрядов</h2>
+</div>
+<ul class="gallery" ng-init="gallery = {active: '{{ site.data.gallery[0] }}'}">
+  {% for image in site.data.gallery %}
+    <li ng-class="{active: gallery.active == '{{ image }}'}" style="background-image: url({{ site.baseurl }}/assets/images/gallery/{{ image }});">
+      {% unless forloop.first %}
+        <a ng-click="gallery.active = '{{ prev }}'" class="left"></a>
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next = site.data.gallery[forloop.index] %}
+        <a ng-click="gallery.active = '{{ next }}'" class="right"></a>
+      {% endunless %}
+    </li>
+    {% assign prev = image %}
+  {% endfor %}
+</ul>
+
+<div class="part">
+  <h2>Практики очищения</h2>
+</div>
+<ul class="gallery" ng-init="gallery = {active: '{{ site.data.gallery[0] }}'}">
+  {% for image in site.data.gallery %}
+    <li ng-class="{active: gallery.active == '{{ image }}'}" style="background-image: url({{ site.baseurl }}/assets/images/gallery/{{ image }});">
+      {% unless forloop.first %}
+        <a ng-click="gallery.active = '{{ prev }}'" class="left"></a>
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next = site.data.gallery[forloop.index] %}
+        <a ng-click="gallery.active = '{{ next }}'" class="right"></a>
+      {% endunless %}
+    </li>
+    {% assign prev = image %}
+  {% endfor %}
+</ul>
+
+<div class="part">
+  <h2>Разное</h2>
+</div>
+<ul class="gallery" ng-init="gallery = {active: '{{ site.data.gallery[0] }}'}">
+  {% for image in site.data.gallery %}
+    <li ng-class="{active: gallery.active == '{{ image }}'}" style="background-image: url({{ site.baseurl }}/assets/images/gallery/{{ image }});">
+      {% unless forloop.first %}
+        <a ng-click="gallery.active = '{{ prev }}'" class="left"></a>
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next = site.data.gallery[forloop.index] %}
+        <a ng-click="gallery.active = '{{ next }}'" class="right"></a>
+      {% endunless %}
+    </li>
+    {% assign prev = image %}
+  {% endfor %}
 </ul>

@@ -2,3 +2,11 @@
 layout: default
 navigation: events
 ---
+
+<ul class="list">
+  {% for event in site.data.events %}
+    <li class="part">
+      <h2>{{ event.title }}</h2>
+    </li>
+  {% endfor %}
+</ul>

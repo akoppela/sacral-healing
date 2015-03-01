@@ -1,6 +1,8 @@
-<header>
+<header class="{% if page.navigation == 'questions' or page.navigation == 'services' %}{{ 'big' }}{% endif %}">
   <div class="wrapper">
-    <h1><a href="{{ "/" | prepend: site.baseurl }}">{{ site.title }}</a></h1>
+    <h1 class="{% if page.navigation == 'welcome' %}{{ 'active' }}{% endif %}">
+      <a href="{{ "/" | prepend: site.baseurl }}">{{ site.title }}</a>
+    </h1>
     <nav>
       <li class="{% if page.navigation == 'about' %}{{ 'active' }}{% endif %}">
         <a href="{{ "/about" | prepend: site.baseurl }}">О себе</a>
@@ -24,5 +26,8 @@
         <a href="{{ "/contacts" | prepend: site.baseurl }}">Контакты</a>
       </li>
     </nav>
+    {% if (page.navigation == 'questions' or page.navigation == 'services') %}
+      <input type="text" class="search" placeholder="Введите поисковый запрос" ng-model="search" ng-init="search = ''" />
+    {% endif %}
   </div>
 </header>
