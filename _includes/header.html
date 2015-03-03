@@ -1,4 +1,4 @@
-<header class="{% if page.navigation == 'questions' or page.navigation == 'services' %}{{ 'big' }}{% endif %}">
+<header class="{% if page.navigation == 'questions' or page.navigation == 'services' %}{{ 'big' }}{% endif %}" ng-init="menu = false" ng-class="{menu: menu}">
   <div class="wrapper">
     <h1 class="{% if page.navigation == 'welcome' %}{{ 'active' }}{% endif %}">
       <a href="{{ "/" | prepend: site.baseurl }}">{{ site.title }}</a>
@@ -26,6 +26,9 @@
         <a href="{{ "/contacts" | prepend: site.baseurl }}">Контакты</a>
       </li>
     </nav>
+    <div class="menu">
+      <a href="#" ng-click="menu = !menu">Menu</a>
+    </div>
     {% if (page.navigation == 'questions' or page.navigation == 'services') %}
       <input type="text" class="search" placeholder="Введите поисковый запрос" ng-model="search" ng-init="search = ''" />
     {% endif %}

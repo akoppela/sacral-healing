@@ -7,8 +7,10 @@ navigation: services
   {% for service in site.data.services %}
     <li class="part expanded" ng-if="'{{ service.title }}'.toLowerCase().indexOf(search) != -1">
       <h2>{{ service.title }}</h2>
-      <p class="center">{{ service.description }}</p>
-      <p class="center">Цена: {{ service.price }}</p>
+      {% if service.description %}
+        <p class="center">{{ service.description }}</p>
+      {% endif %}
+      <p class="center">Цена от: {{ service.price }}</p>
     </li>
   {% endfor %}
 </ul>

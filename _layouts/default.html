@@ -2,7 +2,7 @@
 <html ng-app="SacralHealing">
   {% include head.html %}
   <body>
-    <div id="container">
+    <div id="container" ng-controller="WelcomeController" class="{% if page.navigation == 'gallery' %}{{ 'gallery' }}{% endif %} {% if page.navigation == 'reviews' %}{{ 'reviews' }}{% endif %}">
       {% include header.html %}
       <div id="content">
         <div class="wrapper {{page.navigation}} {% if page.navigation == 'gallery' %}{{ 'full' }}{% endif %}">
@@ -10,6 +10,8 @@
         </div>
       </div>
       {% include footer.html %}
+      <span class="top" ng-click="move(true)"></span>
+      <span class="bottom" ng-click="move(false)"></span>
     </div>
   </body>
 </html>
