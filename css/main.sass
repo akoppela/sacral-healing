@@ -366,6 +366,22 @@ $footer: $baseline * 2
           & + li
             :margin
               :left -100%
+        
+        &:before
+          :content ''
+          :position absolute
+          :left 50%
+          :top 50%
+          :margin
+            :top -$baseline * 1.5
+            :left -$baseline * 1.5
+          :background #fff url("{{ "/assets/images/icons/loading.gif" | prepend: site.baseurl }}") no-repeat center
+          +background-size($baseline * 2)
+          :width $baseline * 3
+          :height $baseline * 3
+          :border 1px solid rgba(51, 0, 102, 0.5)
+          +border-radius($baseline * 1.5)
+          +box-shadow(0 0 10px rgba(0, 0, 0, 0.5))
       
       &.full
         :height 100%
