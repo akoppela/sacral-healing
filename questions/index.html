@@ -8,7 +8,7 @@ navigation: questions
     <li class="part" ng-init="questions['{{ forloop.index }}'] = {active: false}" ng-class="{expanded: questions['{{ forloop.index }}'].active}" ng-if="'{{ question.title }}'.toLowerCase().indexOf(search) != -1">
       <h2><a href="#" ng-click="questions['{{ forloop.index }}'].active = !questions['{{ forloop.index }}'].active">{{ question.title }}</a></h2>
       {% if question.answer %}
-        <p>{{ question.answer }}</p>
+        <p class="center">{{ question.answer | newline_to_br }}</p>
       {% endif %}
     </li>
   {% endfor %}
