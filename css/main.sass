@@ -189,6 +189,8 @@ $footer: $baseline * 2
   > #content
     :padding
       :bottom $footer
+    :font
+      :family Lato, Arial, serif
     
     > .wrapper
       :overflow hidden
@@ -266,14 +268,13 @@ $footer: $baseline * 2
             :top $baseline * 1.5
       
       p
-        :text
-          :align justify
         :font
-          :size $baseline * 0.9
+          :size $baseline * 0.85
         :line-height $baseline * 1.5
         :padding
           :left $ninesixty_gutter_width * 2
           :right $ninesixty_gutter_width * 2
+        :text-align center
         
         > a
           +inverse-hover-underline
