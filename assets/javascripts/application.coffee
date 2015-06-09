@@ -30,7 +30,7 @@ SacralHealing.filter 'shuffle', ->
 
 SacralHealing.controller 'WelcomeController', ['$scope', '$timeout', '$filter', ($scope, $timeout, $filter)->
   content = document.getElementById('content')
-  if content then $scope.move = (state)-> if !state then content.scrollTop += 100 else content.scrollTop -= 100
+  if content then $scope.move = (state)-> content.scrollTop = content.scrollTop + (if !state then 100 else -100)
   
   footer = document.getElementById('footer-wrapper')
   if footer
